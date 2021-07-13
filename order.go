@@ -3,11 +3,24 @@ package gollies
 type Order = int
 
 const (
-  Less	= Order(-1)
-  Equal = Order(0)
-  Greater = Order(1)
+	Lt = Order(-1)
+	Eq = Order(0)
+	Gt = Order(1)
 )
 
-type Sortable interface {
-     Compare(x, y, arg interface{}) Order
+type Compare = func(x, y, arg interface{}) Order
+
+func CompareInt(x, y, arg interface{}) Order {
+	xv, yv := x.(int), y.(int)
+	
+	if xv < yv {
+		return Lt
+	}
+
+	if xv > yv {
+		return Gt
+	}
+
+	return Eq
+	
 }
