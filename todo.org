@@ -1,0 +1,3 @@
+* finish slice set
+** add tests
+* port rb from whirlog
