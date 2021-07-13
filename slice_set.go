@@ -1,8 +1,7 @@
 package gollies
 
 type SliceSetItem = struct {
-     Key Sortable
-     Value interface{}
+     Key, Value interface{}
 }
 
 type SliceSet struct {
@@ -13,12 +12,12 @@ func NewSliceSet() *SliceSet {
      return &SliceSet{}
 }
 
-func (s *SliceSet) Find(key Sortable) (int, interface{}) {
+func (s *SliceSet) Find(key interface{}) (int, interface{}) {
      //TODO Binary search
      return 0, nil
 }
 
-func (s *SliceSet) Add(key Sortable, val interface{}) interface{} {
+func (s *SliceSet) Add(key interface{}, val interface{}) interface{} {
   i, found := s.Find(key)
 
   if found != nil {
@@ -31,7 +30,7 @@ func (s *SliceSet) Add(key Sortable, val interface{}) interface{} {
   return nil
 }
 
-func (s *SliceSet) Remove(key Sortable) interface{} {
+func (s *SliceSet) Remove(key interface{}) interface{} {
   i, found := s.Find(key)
 
   if found != nil {

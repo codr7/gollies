@@ -9,5 +9,5 @@ const (
 )
 
 type Sortable interface {
-     Compare() Order
+     Compare(x, y, arg interface{}) Order
 }
