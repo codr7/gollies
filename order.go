@@ -21,6 +21,5 @@ func CompareInt(x, y interface{}) Order {
 		return Gt
 	}
 
-	return Eq
-	
+	return Eq	
 }

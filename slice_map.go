@@ -38,7 +38,7 @@ func (m *SliceMap) Index(key interface{}) (int, interface{}) {
 	return min, nil
 }
 
-func (m *SliceMap) Find(key interface{}) interface{} {
+func (m SliceMap) Find(key interface{}) interface{} {
 	_, found := m.Index(key)
 	return found
 }

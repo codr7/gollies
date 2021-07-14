@@ -28,10 +28,28 @@ func TestSliceMapBasics(t *testing.T) {
 }
 
 const nItems = 1000
+var items [nItems]int
+
+func bench(b *testing.B, mk func() Map) {		
+	for i := 0; i < b.N; i++ {
+		m := mk()
+		
+		for _, v := range items {
+			m.Add(v, v)
+		}
+		
+		for _, v := range items {
+			if m.Find(v) != v {
+			}
+		}
+		
+		for _, v := range items {
+			m.Remove(v)
+		}
+	}
+}
 
 func BenchmarkSliceMap(b *testing.B) {
-	var items [nItems]int
-
 	for i := 0; i < nItems; i++ {
 		items[i] = i;
 	}
@@ -40,42 +58,15 @@ func BenchmarkSliceMap(b *testing.B) {
 		items[i], items[j] = items[j], items[i]
 	})
 	
-	b.Run("SliceMap", func(b *testing.B) {		
-		for i := 0; i < b.N; i++ {
-			var m SliceMap
-			m.Init(CompareInt)
-
-			for _, v := range items {
-				m.Add(v, v)
-			}
-
-			for _, v := range items {
-				if m.Find(v) != v {
-				}
-			}
-
-			for _, v := range items {
-				m.Remove(v)
-			}
-		}
+	b.Run("SliceMap", func(b *testing.B) {
+		bench(b, func() Map {
+			return NewSliceMap(CompareInt)
+		})
 	})
-	
-	b.Run("Map", func(b *testing.B) {		
-		for i := 0; i < b.N; i++ {
-			m := make(map[int]int)
 
-			for _, v := range items {
-				m[v] = v
-			}
-
-			for _, v := range items {
-				if m[v] != v {
-				}
-			}
-
-			for _, v := range items {
-				delete(m, v)
-			}
-		}
+	b.Run("HashMap", func(b *testing.B) {
+		bench(b, func() Map {
+			return NewHashMap()
+		})
 	})
 }
