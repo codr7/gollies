@@ -8,9 +8,9 @@ const (
 	Gt = Order(1)
 )
 
-type Compare = func(x, y, arg interface{}) Order
+type Compare = func(x, y interface{}) Order
 
-func CompareInt(x, y, arg interface{}) Order {
+func CompareInt(x, y interface{}) Order {
 	xv, yv := x.(int), y.(int)
 	
 	if xv < yv {

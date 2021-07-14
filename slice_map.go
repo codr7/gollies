@@ -20,7 +20,7 @@ func (m *SliceMap) Find(key interface{}) (int, interface{}) {
 		i := (min+max)/2
 		it := m.Items[i]
 		
-		switch m.Compare(key, it.Key, nil) {
+		switch m.Compare(key, it.Key) {
 		case Lt:
 			max = i
 		case Eq:
