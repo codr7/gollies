@@ -18,7 +18,7 @@ func (m *SliceMap) Init(cmp Compare) *SliceMap {
 	return m
 }
 
-func (m *SliceMap) Index(key interface{}) (int, interface{}) {
+func (m SliceMap) Index(key interface{}) (int, interface{}) {
 	min, max := 0, m.Len()
 
 	for min < max {

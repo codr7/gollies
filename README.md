@@ -1,22 +1,7 @@
 ## gollies
 
-### maps
-Gollies will eventually provide several kinds of maps, a common interface is provided.
-
-```
-type Map interface {
-	Add(key interface{}, val interface{}) interface{}
-	Remove(key interface{}) interface{}
-	Find(key interface{}) interface{}
-	Len() int
-}
-```
-
-#### hash maps
-Hash maps simply wrap the regular native implementation.
-
-#### slice maps
-Slice maps are implemented as ordered slices of items, each map may be configured with a custom compare function.
+### order
+Ordered collections share the same function signature for comparisons.
 
 ```
 type Order = int
@@ -44,8 +29,34 @@ func CompareInt(x, y interface{}) Order {
 }
 ```
 
+### maps
+Gollies will eventually provide several kinds of maps, a common interface is provided.
+
+```
+type Map interface {
+	Add(key interface{}, val interface{}) interface{}
+	Remove(key interface{}) interface{}
+	Find(key interface{}) interface{}
+	Len() int
+}
+```
+
+#### hash maps
+Hash maps simply wrap the regular native implementation.
+
+```
+func NewHashMap() *HashMap
+```
+
+#### slice maps
+Slice maps are implemented as ordered slices of items, each map may be configured with a custom compare function.
+
+```
+func NewSliceMap(cmp Compare) *SliceMap
+```
+
 ### tests & benchmarks
-Slice maps break even with native hash maps around 1000 items on my machine, being significantly cheaper to initialize is the main reason they're able to compete at all. 
+Slice maps break even with hash maps around 1000 items on my machine, being significantly cheaper to initialize is the main reason they're able to compete at all. 
 
 ```
 $ go test -bench=.
