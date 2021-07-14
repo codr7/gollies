@@ -40,10 +40,10 @@ func BenchmarkSliceMap(b *testing.B) {
 		items[i], items[j] = items[j], items[i]
 	})
 	
-	b.Run("SliceMap", func(b *testing.B) {
-		m := NewSliceMap(CompareInt)
-		
+	b.Run("SliceMap", func(b *testing.B) {		
 		for i := 0; i < b.N; i++ {
+			m := NewSliceMap(CompareInt)
+
 			for _, v := range items {
 				m.Add(v, v)
 			}
@@ -54,10 +54,10 @@ func BenchmarkSliceMap(b *testing.B) {
 		}
 	})
 	
-	b.Run("Map", func(b *testing.B) {
-		m := make(map[int]int)
-		
+	b.Run("Map", func(b *testing.B) {		
 		for i := 0; i < b.N; i++ {
+			m := make(map[int]int)
+
 			for _, v := range items {
 				m[v] = v
 			}
