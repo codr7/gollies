@@ -10,10 +10,15 @@ type SliceMap struct {
 }
 
 func NewSliceMap(cmp Compare) *SliceMap {
-	return &SliceMap{Compare: cmp}
+	return new(SliceMap).Init(cmp)
 }
 
-func (m *SliceMap) Find(key interface{}) (int, interface{}) {
+func (m *SliceMap) Init(cmp Compare) *SliceMap {
+	m.Compare = cmp
+	return m
+}
+
+func (m *SliceMap) Index(key interface{}) (int, interface{}) {
 	min, max := 0, m.Len()
 
 	for min < max {
@@ -33,8 +38,13 @@ func (m *SliceMap) Find(key interface{}) (int, interface{}) {
 	return min, nil
 }
 
+func (m *SliceMap) Find(key interface{}) interface{} {
+	_, found := m.Index(key)
+	return found
+}
+
 func (m *SliceMap) Add(key interface{}, val interface{}) interface{} {
-	i, found := m.Find(key)
+	i, found := m.Index(key)
 
 	if found != nil {
 		return found
@@ -47,7 +57,7 @@ func (m *SliceMap) Add(key interface{}, val interface{}) interface{} {
 }
 
 func (m *SliceMap) Remove(key interface{}) interface{} {
-	i, found := m.Find(key)
+	i, found := m.Index(key)
 
 	if found != nil {
 		m.Items = m.Items[:i+copy(m.Items[i:], m.Items[i+1:])]

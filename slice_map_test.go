@@ -42,10 +42,16 @@ func BenchmarkSliceMap(b *testing.B) {
 	
 	b.Run("SliceMap", func(b *testing.B) {		
 		for i := 0; i < b.N; i++ {
-			m := NewSliceMap(CompareInt)
+			var m SliceMap
+			m.Init(CompareInt)
 
 			for _, v := range items {
 				m.Add(v, v)
+			}
+
+			for _, v := range items {
+				if m.Find(v) != v {
+				}
 			}
 
 			for _, v := range items {
@@ -60,6 +66,11 @@ func BenchmarkSliceMap(b *testing.B) {
 
 			for _, v := range items {
 				m[v] = v
+			}
+
+			for _, v := range items {
+				if m[v] != v {
+				}
 			}
 
 			for _, v := range items {
