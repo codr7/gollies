@@ -19,7 +19,7 @@ func (m *SliceMap) Init(cmp Compare) *SliceMap {
 }
 
 func (m SliceMap) Index(key interface{}) (int, interface{}) {
-	min, max := 0, m.Len()
+	min, max := 0, len(m.items)
 
 	for min < max {
 		i := (min+max)/2
@@ -77,7 +77,7 @@ func (m *SliceMap) Remove(key interface{}) interface{} {
 }
 
 func (m SliceMap) Keys() []interface{} {
-	out := make([]interface{}, m.Len())
+	out := make([]interface{}, len(m.items))
 
 	for i, it := range m.items {
 		out[i] = it.key
@@ -87,7 +87,7 @@ func (m SliceMap) Keys() []interface{} {
 }
 
 func (m SliceMap) Values() []interface{} {
-	out := make([]interface{}, m.Len())
+	out := make([]interface{}, len(m.items))
 
 	for i, it := range m.items {
 		out[i] = it.value
@@ -98,4 +98,34 @@ func (m SliceMap) Values() []interface{} {
 
 func (m SliceMap) Len() int {
 	return len(m.items)
+}
+
+func (m *SliceMap) AddAll(y Map) {
+	AddAll(m, y)
+}
+
+func (m *SliceMap) KeepAll(y Map) {
+	newLen := len(m.items)
+	keep := make([]bool, newLen)
+	
+	for i, it := range m.items {
+		found := y.Find(it.key) != nil
+		keep[i] = found
+
+		if !found {
+			newLen--
+		}
+	}
+
+	newItems := make([]SliceMapItem, newLen)
+	i := 0;
+	
+	for j, it := range m.items {
+		if keep[j] {
+			newItems[i] = it
+			i++
+		}
+	}
+
+	m.items = newItems
 }

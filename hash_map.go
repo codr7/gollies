@@ -42,7 +42,7 @@ func (m *HashMap) Remove(key interface{}) interface{} {
 }
 
 func (m HashMap) Keys() []interface{} {
-	out := make([]interface{}, m.Len())
+	out := make([]interface{}, len(m.items))
 	i := 0
 	
 	for k, _ := range m.items {
@@ -54,7 +54,7 @@ func (m HashMap) Keys() []interface{} {
 }
 
 func (m HashMap) Values() []interface{} {
-	out := make([]interface{}, m.Len())
+	out := make([]interface{}, len(m.items))
 	i := 0
 	
 	for _, v := range m.items {
@@ -67,4 +67,22 @@ func (m HashMap) Values() []interface{} {
 
 func (m HashMap) Len() int {
 	return len(m.items)
+}
+
+func (m *HashMap) AddAll(y Map) {
+	AddAll(m, y)
+}
+
+func (m *HashMap) KeepAll(y Map) {
+	var drop []interface{}
+	
+	for k, _ := range m.items {
+		if y.Find(k) == nil {
+			drop = append(drop, k)
+		}
+	}
+
+	for _, k := range drop {
+		delete(m.items, k)
+	}
 }

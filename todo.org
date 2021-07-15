@@ -1,5 +1,5 @@
+* add Map.RemoveAll(y)
+* add Union/Intersection/Difference methods
+** default to Clone+xAll in map.go
 * add Map.Clone()
-* add Map.Union(other)
-** add BasicMap struct
-*** add all from other in default imp
 * port rb from whirlog

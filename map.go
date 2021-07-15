@@ -11,4 +11,14 @@ type Map interface {
 	Values() []interface{}
 
 	Len() int
+
+	AddAll(y Map)
+	KeepAll(y Map)
+}
+
+func AddAll(x Map, y Map) {
+	y.Each(func(k, v interface{}) bool {
+		x.Add(k, v)
+		return true
+	})
 }
