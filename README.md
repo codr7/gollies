@@ -36,7 +36,12 @@ Gollies will eventually provide several kinds of maps, a common interface is pro
 type Map interface {
 	Add(key interface{}, val interface{}) interface{}
 	Remove(key interface{}) interface{}
+
 	Find(key interface{}) interface{}
+
+	Keys() []interface{}
+	Values() []interface{}
+
 	Len() int
 }
 ```

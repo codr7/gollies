@@ -31,6 +31,30 @@ func (m *HashMap) Remove(key interface{}) interface{} {
 	return val
 }
 
+func (m HashMap) Keys() []interface{} {
+	out := make([]interface{}, m.Len())
+	i := 0
+	
+	for k, _ := range m.items {
+		out[i] = k
+		i++
+	}
+
+	return out
+}
+
+func (m HashMap) Values() []interface{} {
+	out := make([]interface{}, m.Len())
+	i := 0
+	
+	for _, v := range m.items {
+		out[i] = v
+		i++
+	}
+
+	return out
+}
+
 func (m HashMap) Len() int {
 	return len(m.items)
 }

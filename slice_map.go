@@ -1,7 +1,7 @@
 package gollies
 
 type SliceMapItem = struct {
-	Key, Value interface{}
+	key, value interface{}
 }
 
 type SliceMap struct {
@@ -25,11 +25,11 @@ func (m SliceMap) Index(key interface{}) (int, interface{}) {
 		i := (min+max)/2
 		it := m.items[i]
 		
-		switch m.compare(key, it.Key) {
+		switch m.compare(key, it.key) {
 		case Lt:
 			max = i
 		case Eq:
-			return i, it.Value
+			return i, it.value
 		case Gt:
 			min = i+1
 		}
@@ -64,6 +64,26 @@ func (m *SliceMap) Remove(key interface{}) interface{} {
 	}
 
 	return found
+}
+
+func (m SliceMap) Keys() []interface{} {
+	out := make([]interface{}, m.Len())
+
+	for i, it := range m.items {
+		out[i] = it.key
+	}
+
+	return out
+}
+
+func (m SliceMap) Values() []interface{} {
+	out := make([]interface{}, m.Len())
+
+	for i, it := range m.items {
+		out[i] = it.value
+	}
+
+	return out
 }
 
 func (m SliceMap) Len() int {

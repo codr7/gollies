@@ -20,6 +20,22 @@ func TestSliceMapBasics(t *testing.T) {
 		t.Errorf("Wrong Len() after Add(): %v", l)
 	}
 
+	ks := m.Keys()
+	
+	for i := 0; i < 3; i++ {
+		if k := ks[i]; k != i+1 {
+			t.Errorf("Wrong key: %v", k)
+		}
+	}
+
+	vs := m.Values()
+	
+	for i := 0; i < 3; i++ {
+		if v := vs[i]; v != i+1 {
+			t.Errorf("Wrong value: %v", v)
+		}
+	}
+
 	m.Remove(2)
 
 	if l := m.Len(); l != 2 {

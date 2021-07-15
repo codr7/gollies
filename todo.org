@@ -1,6 +1,3 @@
-* add Keys/Values methods
-*** allocate values array
-*** test
 * add Each(k, v) method
 ** test
 * port rb from whirlog
