@@ -19,6 +19,16 @@ func (m HashMap) Find(key interface{}) interface{} {
 	return m.items[key]
 }
 
+func (m HashMap) Each(pred func (key, val interface {}) bool) bool {
+	for k, v := range m.items {
+		if !pred(k, v) {
+			return false
+		}
+	}
+
+	return true
+}
+
 func (m *HashMap) Add(key interface{}, val interface{}) interface{} {
 	prev := m.items[key]
 	m.items[key] = val

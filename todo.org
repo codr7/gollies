@@ -1,3 +1,5 @@
-* add Each(k, v) method
-** test
+* add Map.Clone()
+* add Map.Union(other)
+** add BasicMap struct
+*** add all from other in default imp
 * port rb from whirlog

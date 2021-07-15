@@ -43,6 +43,16 @@ func (m SliceMap) Find(key interface{}) interface{} {
 	return found
 }
 
+func (m SliceMap) Each(pred func (key, val interface {}) bool) bool {
+	for _, it := range m.items {
+		if !pred(it.key, it.value) {
+			return false
+		}
+	}
+
+	return true
+}
+
 func (m *SliceMap) Add(key interface{}, val interface{}) interface{} {
 	i, found := m.Index(key)
 
