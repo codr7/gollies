@@ -30,7 +30,6 @@ func CompareInt(x, y interface{}) Order {
 ```
 
 ### maps
-Gollies will eventually provide several kinds of maps, a common interface is provided.
 
 ```
 type Map interface {
