@@ -86,3 +86,7 @@ func (m *HashMap) KeepAll(y Map) {
 		delete(m.items, k)
 	}
 }
+
+func (m *HashMap) RemoveAll(y Map) {
+	RemoveAll(m, y)
+}

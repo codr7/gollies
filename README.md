@@ -46,6 +46,7 @@ type Map interface {
 
 	AddAll(y Map)
 	KeepAll(y Map)
+	RemoveAll(y Map)
 }
 ```
 

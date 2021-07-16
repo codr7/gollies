@@ -1,5 +1,4 @@
-* add Map.RemoveAll(y)
+* add Map.Clone()
 * add Union/Intersection/Difference methods
 ** default to Clone+xAll in map.go
-* add Map.Clone()
 * port rb from whirlog

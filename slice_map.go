@@ -129,3 +129,7 @@ func (m *SliceMap) KeepAll(y Map) {
 
 	m.items = newItems
 }
+
+func (m *SliceMap) RemoveAll(y Map) {
+	RemoveAll(m, y)
+}
