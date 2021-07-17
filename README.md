@@ -49,6 +49,10 @@ type Map interface {
 	AddAll(src Map)
 	KeepAll(src Map)
 	RemoveAll(src Map)
+
+	Difference(rhs Map) Map
+	Intersection(rhs Map) Map
+	Union(rhs Map) Map
 }
 ```
 

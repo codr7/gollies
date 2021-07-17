@@ -1,4 +1,1 @@
-* add Map.Clone()
-* add Union/Intersection/Difference methods
-** default to Clone+xAll in map.go
 * port rb from whirlog

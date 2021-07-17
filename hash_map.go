@@ -100,3 +100,15 @@ func (m *HashMap) KeepAll(y Map) {
 func (m *HashMap) RemoveAll(y Map) {
 	RemoveAll(m, y)
 }
+
+func (m *HashMap) Difference(rhs Map) Map {
+	return Difference(m, rhs)
+}
+
+func (m *HashMap) Intersection(rhs Map) Map {
+	return Intersection(m, rhs)
+}	
+
+func (m *HashMap) Union(rhs Map) Map {
+	return Union(m, rhs)
+}

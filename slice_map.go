@@ -140,3 +140,15 @@ func (m *SliceMap) KeepAll(src Map) {
 func (m *SliceMap) RemoveAll(src Map) {
 	RemoveAll(m, src)
 }
+
+func (m *SliceMap) Difference(rhs Map) Map {
+	return Difference(m, rhs)
+}
+
+func (m *SliceMap) Intersection(rhs Map) Map {
+	return Intersection(m, rhs)
+}	
+
+func (m *SliceMap) Union(rhs Map) Map {
+	return Union(m, rhs)
+}
