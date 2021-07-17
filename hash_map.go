@@ -15,6 +15,16 @@ func (m *HashMap) Init() *HashMap {
 	return m
 }
 
+func (m HashMap) Clone() Map {
+	dst := NewHashMap()
+	
+	for k, v := range m.items {
+		dst.items[k] = v
+	}
+
+	return dst
+}
+
 func (m HashMap) Find(key interface{}) interface{} {
 	return m.items[key]
 }

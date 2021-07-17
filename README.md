@@ -33,6 +33,8 @@ func CompareInt(x, y interface{}) Order {
 
 ```
 type Map interface {
+	Clone() Map
+
 	Add(key interface{}, val interface{}) interface{}
 	Remove(key interface{}) interface{}
 
@@ -44,9 +46,9 @@ type Map interface {
 
 	Len() int
 
-	AddAll(y Map)
-	KeepAll(y Map)
-	RemoveAll(y Map)
+	AddAll(src Map)
+	KeepAll(src Map)
+	RemoveAll(src Map)
 }
 ```
 

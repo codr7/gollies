@@ -1,6 +1,8 @@
 package gollies
 
 type Map interface {
+	Clone() Map
+
 	Add(key interface{}, val interface{}) interface{}
 	Remove(key interface{}) interface{}
 
@@ -12,23 +14,23 @@ type Map interface {
 
 	Len() int
 
-	AddAll(y Map)
-	KeepAll(y Map)
-	RemoveAll(y Map)
+	AddAll(src Map)
+	KeepAll(src Map)
+	RemoveAll(src Map)
 }
 
-func AddAll(x Map, y Map) {
-	y.Each(func(k, v interface{}) bool {
-		x.Add(k, v)
+func AddAll(dst Map, src Map) {
+	src.Each(func(k, v interface{}) bool {
+		dst.Add(k, v)
 		return true
 	})
 }
 
-func KeepAll(x Map, y Map) {
+func KeepAll(dst Map, src Map) {
 	var rem []interface{}
 	
-	x.Each(func(k, _ interface{}) bool {
-		if y.Find(k) == nil {
+	dst.Each(func(k, _ interface{}) bool {
+		if src.Find(k) == nil {
 			rem = append(rem, k)
 		}
 		
@@ -36,13 +38,13 @@ func KeepAll(x Map, y Map) {
 	})
 
 	for _, k := range rem {
-		x.Remove(k)
+		dst.Remove(k)
 	}
 }
 
-func RemoveAll(x Map, y Map) {
-	y.Each(func(k, _ interface{}) bool {
-		x.Remove(k)
+func RemoveAll(dst Map, src Map) {
+	src.Each(func(k, _ interface{}) bool {
+		dst.Remove(k)
 		return true
 	})
 }
