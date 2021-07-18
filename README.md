@@ -70,11 +70,11 @@ Slice maps are implemented as ordered slices of items, each map may be configure
 func NewSliceMap(cmp Compare) *SliceMap
 ```
 
-### tests & benchmarks
+### performance
 Slice maps break even with hash maps around 1000 items on my machine, being significantly cheaper to initialize is the main reason they're able to compete at all. 
 
 ```
-$ go test -bench=.
+$ ./bench
 goos: darwin
 goarch: amd64
 pkg: github.com/codr7/gollies/m/v2

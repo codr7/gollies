@@ -1,3 +1,3 @@
-module github.com/codr7/gollies/m/v2
+module github.com/codr7/gollies
 
 go 1.16
