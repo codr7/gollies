@@ -1,5 +1,9 @@
 package gollies
 
+import (
+	"strings"
+)
+
 type Order = int
 
 const (
@@ -22,4 +26,8 @@ func CompareInt(x, y interface{}) Order {
 	}
 
 	return Eq	
+}
+
+func CompareString(x, y interface{}) Order {
+	return Order(strings.Compare(x.(string), y.(string)))
 }
